@@ -7,8 +7,9 @@ import Button from 'react-bootstrap/Button';
 
 import './App.css';
 
-// @ts-ignore
-const ExampleToast = ({ children }) => {
+const ExampleToast: React.FC = ({
+    children,
+}) => {
   const [show, toggleShow] = useState(true);
 
   return (
