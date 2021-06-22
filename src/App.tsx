@@ -5,7 +5,16 @@ import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
+import {
+    HashRouter as Router,
+    Switch,
+    Route,
+    Link,
+    NavLink
+} from "react-router-dom";
+
 import './App.css';
+import {Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
 
 const ExampleToast: React.FC = ({
     children,
@@ -26,17 +35,76 @@ const ExampleToast: React.FC = ({
 };
 
 const App = () => (
-    <Container className="p-3">
-      <Jumbotron>
-        <h1 className="header">Welcome To React-Bootstrap</h1>
-        <ExampleToast>
-          We now have Toasts
-          <span role="img" aria-label="tada">
-          🎉
-        </span>
-        </ExampleToast>
-      </Jumbotron>
-    </Container>
+    <Router>
+        <Navbar bg="light" expand="lg">
+            {/*<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>*/}
+            {/*<Nav.Link href="#home">Home</Nav.Link>*/}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+
+            <NavLink exact
+                to="/"
+                className="navbar-brand"
+            >
+                React-Bootstrap
+            </NavLink>
+
+            <NavLink exact
+                to="/"
+                className="nav-link"
+                activeClassName="active"
+            >
+                Home
+            </NavLink>
+
+            <NavLink
+                to="/about"
+                className="nav-link"
+                activeClassName="active"
+            >
+                About
+            </NavLink>
+
+
+            {/*<Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="#link">Link</Nav.Link>
+                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav>
+                <Form inline>
+                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                    <Button variant="outline-success">Search</Button>
+                </Form>
+            </Navbar.Collapse>*/}
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
+        <Container fluid>
+            <Switch>
+                <Route path="/about">
+                    <div>About Page</div>
+                </Route>
+                <Route exact path="/">
+                    <Jumbotron>
+                        <h1 className="header">Welcome To React-Bootstrap</h1>
+                        <ExampleToast>
+                            We now have Toasts
+                            <span role="img" aria-label="tada">🎉</span>
+                        </ExampleToast>
+                    </Jumbotron>
+                </Route>
+            </Switch>
+        </Container>
+    </Router>
 );
 
 export default App;
