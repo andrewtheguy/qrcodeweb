@@ -42,13 +42,15 @@ const GenerateQR: React.FC = () => {
                 const DOMURL = window.URL || window.webkitURL || window;
 
                 const img = new Image();
-                const svgBlob = new Blob([svg], {type: 'image/svg+xml;charset=utf-8'});
+                const svgBlob = new Blob([svg], {type: 'image/svg+xml'});
                 const url = DOMURL.createObjectURL(svgBlob);
-
+                console.log(svgBlob);
+                img.onerror = function (e) {
+                    alert("error downloading");
+                }
                 img.onload = function () {
                     ctx.drawImage(img, 0, 0);
                     DOMURL.revokeObjectURL(url);
-
                     const imgURI = canvas
                         .toDataURL('image/png');
                     //alert(imgURI)
