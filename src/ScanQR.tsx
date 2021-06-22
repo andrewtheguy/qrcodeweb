@@ -63,7 +63,7 @@ const ScanQR: React.FC = () => {
         if(!urlInfo){
             return <div>Loading url info</div>;
         }else{
-            return <div>{urlInfo.validUrl ? <a href={data} target="_blank">{data}</a> : <textarea rows={6} cols={40} readOnly onClick={(e) => { (e.target as HTMLTextAreaElement).select() } }>{data}</textarea>}</div>;
+            return <div>{urlInfo.validUrl ? <a href={data} target="_blank" rel="noreferrer">{data}</a> : <textarea rows={6} cols={40} readOnly onClick={(e) => { (e.target as HTMLTextAreaElement).select() } }>{data}</textarea>}</div>;
         }
 
     }
