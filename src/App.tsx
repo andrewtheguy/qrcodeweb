@@ -16,6 +16,7 @@ import {
 import './App.css';
 import {Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import GenerateQR from "./GenerateQR";
+import ScanQR from "./ScanQR";
 
 const ExampleToast: React.FC = ({
     children,
@@ -103,7 +104,7 @@ const App = () => (
                     <GenerateQR/>
                 </Route>
                 <Route path="/scan">
-                    <div>Scan</div>
+                    <ScanQR/>
                 </Route>
                 <Route path="/about">
                     <Jumbotron>
