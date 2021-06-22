@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
 import {Col, Form, FormControl, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 
 const QRCode = require('qrcode');
 
@@ -45,20 +46,24 @@ const GenerateQR: React.FC = () => {
 
 
     return (
-        <Row>
-            <Col>
-                <p>
-                    <label htmlFor="qr_text">Enter Text: </label><button onClick={()=> setText('')}>Clear</button>
-                    <br/>
-                    <textarea rows={3} id="qr_text" onChange={HandleChangeText} style={{width: '90%',maxWidth: 600}} value={text}/>
-                    <br/>
-                    <div style={{maxWidth: 320}}>{typeof svg === 'string' ?
-                        <div><div dangerouslySetInnerHTML={{ __html: svg!}}></div>
+        <Container>
+            <Row>
+                <Col>
+                    <div className="form-group">
+                        <label htmlFor="qr_text">Enter Text: <button onClick={()=> setText('')}>Clear</button></label>
+                        <textarea className="form-control" id="qr_text" rows={3}  onChange={HandleChangeText}  value={text}></textarea>
+                    </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <div>{typeof svg === 'string' ?
+                        <div style={{maxWidth: 320}}><div dangerouslySetInnerHTML={{ __html: svg!}}></div>
                             <button onClick={downloadPng}>Download PNG</button>
                         </div> :<span>No text entered</span>}</div>
-                </p>
-            </Col>
-        </Row>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

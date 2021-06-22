@@ -14,26 +14,26 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import {Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Col, Form, FormControl, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import GenerateQR from "./GenerateQR";
 import ScanQR from "./ScanQR";
 
 const ExampleToast: React.FC = ({
-    children,
-}) => {
-  const [show, toggleShow] = useState(true);
+                                    children,
+                                }) => {
+    const [show, toggleShow] = useState(true);
 
-  return (
-      <>
-        {!show && <Button onClick={() => toggleShow(true)}>Show Toast</Button>}
-        <Toast show={show} onClose={() => toggleShow(false)}>
-          <Toast.Header>
-            <strong className="mr-auto">React-Bootstrap</strong>
-          </Toast.Header>
-          <Toast.Body>{children}</Toast.Body>
-        </Toast>
-      </>
-  );
+    return (
+        <>
+            {!show && <Button onClick={() => toggleShow(true)}>Show Toast</Button>}
+            <Toast show={show} onClose={() => toggleShow(false)}>
+                <Toast.Header>
+                    <strong className="mr-auto">React-Bootstrap</strong>
+                </Toast.Header>
+                <Toast.Body>{children}</Toast.Body>
+            </Toast>
+        </>
+    );
 };
 
 const App = () => (
@@ -45,39 +45,39 @@ const App = () => (
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
 
-            <NavLink exact
-                to="/"
-                className="navbar-brand"
-            >
-                React-Bootstrap
-            </NavLink>
+                    <NavLink exact
+                             to="/"
+                             className="navbar-brand"
+                    >
+                        React-Bootstrap
+                    </NavLink>
 
-            <NavLink exact
-                to="/"
-                className="nav-link"
-                activeClassName="active"
-            >
-                Generate
-            </NavLink>
+                    <NavLink exact
+                             to="/"
+                             className="nav-link"
+                             activeClassName="active"
+                    >
+                        Generate
+                    </NavLink>
 
-            <NavLink
-                to="/scan"
-                className="nav-link"
-                activeClassName="active"
-            >
-                Scan
-            </NavLink>
+                    <NavLink
+                        to="/scan"
+                        className="nav-link"
+                        activeClassName="active"
+                    >
+                        Scan
+                    </NavLink>
 
-            <NavLink
-                to="/about"
-                className="nav-link"
-                activeClassName="active"
-            >
-                About
-            </NavLink>
+                    <NavLink
+                        to="/about"
+                        className="nav-link"
+                        activeClassName="active"
+                    >
+                        About
+                    </NavLink>
 
 
-            {/*<Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    {/*<Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
@@ -99,23 +99,27 @@ const App = () => (
             </Navbar.Collapse>
         </Navbar>
         <Container fluid>
-            <Switch>
-                <Route exact path="/">
-                    <GenerateQR/>
-                </Route>
-                <Route path="/scan">
-                    <ScanQR/>
-                </Route>
-                <Route path="/about">
-                    <Jumbotron>
-                        <h1 className="header">Welcome To React-Bootstrap</h1>
-                        <ExampleToast>
-                            We now have Toasts
-                            <span role="img" aria-label="tada">🎉</span>
-                        </ExampleToast>
-                    </Jumbotron>
-                </Route>
-            </Switch>
+            <Row>
+                <Col>
+                    <Switch>
+                        <Route exact path="/">
+                            <GenerateQR/>
+                        </Route>
+                        <Route path="/scan">
+                            <ScanQR/>
+                        </Route>
+                        <Route path="/about">
+                            <Jumbotron>
+                                <h1 className="header">Welcome To React-Bootstrap</h1>
+                                <ExampleToast>
+                                    We now have Toasts
+                                    <span role="img" aria-label="tada">🎉</span>
+                                </ExampleToast>
+                            </Jumbotron>
+                        </Route>
+                    </Switch>
+                </Col>
+            </Row>
         </Container>
     </Router>
 );
