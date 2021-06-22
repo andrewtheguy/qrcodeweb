@@ -15,6 +15,7 @@ import {
 
 import './App.css';
 import {Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import GenerateQR from "./GenerateQR";
 
 const ExampleToast: React.FC = ({
     children,
@@ -55,7 +56,15 @@ const App = () => (
                 className="nav-link"
                 activeClassName="active"
             >
-                Home
+                Generate
+            </NavLink>
+
+            <NavLink
+                to="/scan"
+                className="nav-link"
+                activeClassName="active"
+            >
+                Scan
             </NavLink>
 
             <NavLink
@@ -90,10 +99,13 @@ const App = () => (
         </Navbar>
         <Container fluid>
             <Switch>
-                <Route path="/about">
-                    <div>About Page</div>
-                </Route>
                 <Route exact path="/">
+                    <GenerateQR/>
+                </Route>
+                <Route path="/scan">
+                    <div>Scan</div>
+                </Route>
+                <Route path="/about">
                     <Jumbotron>
                         <h1 className="header">Welcome To React-Bootstrap</h1>
                         <ExampleToast>
