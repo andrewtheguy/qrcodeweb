@@ -29,15 +29,12 @@ class FileInput extends React.Component<MyProps, MyState> {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
+                <div>
                     Upload file:
-                    <input type="file" ref={this.fileInput}/> </label>
-                <br/>
+                    <input type="file" ref={this.fileInput}/>
                 <hr/>
-                <br/>
-                <button type="submit">Submit</button>
-            </form>
+                <button onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
+            </div>
         );
     }
 }
@@ -57,7 +54,7 @@ const PictureQR: React.FC = () => {
         if(file) {
             QrScanner.scanImage(file)
                 .then(result => setData(result))
-                .catch(error => console.error(error || 'No QR code found.'));
+                .catch(error => alert(error || 'No QR code found, make sure to crop the picture to show qr code only.'));
         }
     }, [file]);
 
