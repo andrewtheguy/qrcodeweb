@@ -34,6 +34,8 @@ class FileInput extends React.Component<MyProps, MyState> {
                     Upload file:
                     <input type="file" ref={this.fileInput}/> </label>
                 <br/>
+                <hr/>
+                <br/>
                 <button type="submit">Submit</button>
             </form>
         );
