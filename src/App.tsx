@@ -19,6 +19,7 @@ import GenerateQR from "./GenerateQR";
 import ScanQR from "./ScanQR";
 import PictureQR from "./PictureQR";
 
+// should remove
 const ExampleToast: React.FC = ({
                                     children,
                                 }) => {
