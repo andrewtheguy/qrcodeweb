@@ -53,7 +53,7 @@ const GenerateQR: React.FC = () => {
                     DOMURL.revokeObjectURL(url);
                     const imgURI = canvas
                         .toDataURL('image/png');
-                    //alert(imgURI)
+                    console.log(imgURI);
                     download(imgURI, "qrcode.png")
                 };
 
