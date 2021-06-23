@@ -7,6 +7,14 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// QrScanner
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import QrScannerWorkerPath from '!!file-loader!../node_modules/qr-scanner/qr-scanner-worker.min.js';
+import QrScanner from 'qr-scanner';
+
+QrScanner.WORKER_PATH = QrScannerWorkerPath
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
