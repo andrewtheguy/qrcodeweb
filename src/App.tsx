@@ -70,7 +70,7 @@ const App = () => (
                     </NavLink>
 
                     <NavLink
-                        to="/about"
+                        to="/from-pic"
                         className="nav-link"
                         activeClassName="active"
                     >
@@ -88,7 +88,7 @@ const App = () => (
                         <Route path="/scan">
                             <ScanQR/>
                         </Route>
-                        <Route path="/about">
+                        <Route path="/from-pic">
                             <PictureQR/>
 {/*                            <Jumbotron>
                                 <h1 className="header">Welcome To React-Bootstrap</h1>
