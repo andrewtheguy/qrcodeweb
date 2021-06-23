@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {Col, Form, FormControl, FormFile, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
+import {Col, Container, Form, FormControl, FormFile, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import QrScanner from 'qr-scanner';
 import DataSection from './DataSection';
 
@@ -59,6 +59,7 @@ const PictureQR: React.FC = () => {
     }, [file]);
 
     return (
+        <Container>
         <Row>
             <Col>
                 <div>
@@ -67,7 +68,9 @@ const PictureQR: React.FC = () => {
     </div> : <FileInput onFileChange={changeFile}/>}
                 </div>
             </Col>
-        </Row>);
+        </Row>
+        </Container>
+            );
 };
 
 export default PictureQR;
