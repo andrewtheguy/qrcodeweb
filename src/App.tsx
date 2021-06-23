@@ -44,6 +44,7 @@ const App = () => (
             {/*<Nav.Link href="#home">Home</Nav.Link>*/}
             {/*<Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">*/}
+            <Container>
                 <Nav className="mr-auto">
 
                     <NavLink exact
@@ -77,8 +78,9 @@ const App = () => (
                         From Pic
                     </NavLink>
                 </Nav>
+            </Container>
         </Navbar>
-        <Container fluid>
+        <Container>
             <Row>
                 <Col>
                     <Switch>

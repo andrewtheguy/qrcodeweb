@@ -81,7 +81,7 @@ const GenerateQR: React.FC = () => {
 
 
     return (
-        <Container>
+        <>
             <Row>
                 <Col>
                     <div className="form-group">
@@ -98,7 +98,7 @@ const GenerateQR: React.FC = () => {
                         </div> :<span>No text entered</span>}</div>
                 </Col>
             </Row>
-        </Container>
+        </>
     );
 };
 

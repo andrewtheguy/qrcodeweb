@@ -59,7 +59,7 @@ const PictureQR: React.FC = () => {
     }, [file]);
 
     return (
-        <Container>
+        <>
         <Row>
             <Col>
                 <div>
@@ -69,7 +69,7 @@ const PictureQR: React.FC = () => {
                 </div>
             </Col>
         </Row>
-        </Container>
+        </>
             );
 };
 
