@@ -17,6 +17,7 @@ import './App.css';
 import {Col, Form, FormControl, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import GenerateQR from "./GenerateQR";
 import ScanQR from "./ScanQR";
+import PictureQR from "./PictureQR";
 
 const ExampleToast: React.FC = ({
                                     children,
@@ -73,7 +74,7 @@ const App = () => (
                         className="nav-link"
                         activeClassName="active"
                     >
-                        About
+                        From Pic
                     </NavLink>
                 </Nav>
         </Navbar>
@@ -88,13 +89,14 @@ const App = () => (
                             <ScanQR/>
                         </Route>
                         <Route path="/about">
-                            <Jumbotron>
+                            <PictureQR/>
+{/*                            <Jumbotron>
                                 <h1 className="header">Welcome To React-Bootstrap</h1>
                                 <ExampleToast>
                                     We now have Toasts
                                     <span role="img" aria-label="tada">🎉</span>
                                 </ExampleToast>
-                            </Jumbotron>
+                            </Jumbotron>*/}
                         </Route>
                     </Switch>
                 </Col>
