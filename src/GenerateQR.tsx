@@ -28,36 +28,39 @@ const GenerateQR: React.FC = () => {
     const downloadPng = () =>{
         if(svg !==null) {
 
-                //memory leak, should clean up
-                let canvas = document.getElementById('draw-qr-save') as HTMLCanvasElement;
-                if (!canvas) {
-                    canvas = document.createElement('canvas');
-                    canvas.width=320;
-                    canvas.height=320;
-                    canvas.id='draw-qr-save';
-                }
-                const ctx = canvas.getContext('2d') as RenderingContext2D;
+            //memory leak, should clean up
+            let canvas = document.getElementById('draw-qr-save') as HTMLCanvasElement;
+            if (!canvas) {
+                canvas = document.createElement('canvas');
+                canvas.width=320;
+                canvas.height=320;
+                canvas.id='draw-qr-save';
+            }
+            const ctx = canvas.getContext('2d') as RenderingContext2D;
 
 
-                const DOMURL = window.URL || window.webkitURL || window;
+            const DOMURL = window.URL || window.webkitURL || window;
 
-                const img = new Image();
-                const svgBlob = new Blob([svg], {type: 'image/svg+xml'});
-                const url = DOMURL.createObjectURL(svgBlob);
-                console.log(svgBlob);
-                img.onerror = function (e) {
-                    alert("error downloading");
-                }
-                img.onload = function () {
-                    ctx.drawImage(img, 0, 0);
-                    DOMURL.revokeObjectURL(url);
-                    const imgURI = canvas
-                        .toDataURL('image/png');
-                    console.log(imgURI);
-                    download(imgURI, "qrcode.png")
-                };
+            const img = new Image();
+            const svgBlob = new Blob([svg], {type: 'image/svg+xml'});
+            const url = DOMURL.createObjectURL(svgBlob);
+            //console.log(svgBlob);
 
-                img.src = url;
+            img.onerror = function (e) {
+                alert("error downloading");
+            }
+            // won't work in firefox https://bugzilla.mozilla.org/show_bug.cgi?id=700533
+            // drawImage() fails silently when drawing an SVG image without @width or @height
+            img.onload = function () {
+                ctx.drawImage(img, 0, 0);
+                DOMURL.revokeObjectURL(url);
+                const imgURI = canvas
+                    .toDataURL('image/png');
+                console.log(imgURI);
+                download(imgURI, "qrcode.png")
+            };
+
+            img.src = url;
 
         }
     }
