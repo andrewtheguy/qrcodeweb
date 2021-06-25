@@ -84,7 +84,7 @@ const GenerateQR: React.FC = () => {
 
     useEffect(() => {
         if(text!=='') {
-            QRCode.toDataURL(text, (err: any, url: string) => {
+            QRCode.toDataURL(text, {margin: 1},(err: any, url: string) => {
                 if (err){
                     console.error(err);
                 }else {
