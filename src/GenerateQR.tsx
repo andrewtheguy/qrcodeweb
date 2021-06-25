@@ -17,7 +17,7 @@ function download(dataurl: string, filename: string) {
 
 const GenerateQR: React.FC = () => {
     const [qrData,setQrData] = useState<string | null>(null);
-    const [text,setText] = useState('');
+    const [text,setText] = useState<string>('');
 
     const HandleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const text=e.target.value;
@@ -84,11 +84,11 @@ const GenerateQR: React.FC = () => {
 
     useEffect(() => {
         if(text!=='') {
-            const qr = QRCode.toDataURL(text, (err: any, url: string) => {
+            QRCode.toDataURL(text, (err: any, url: string) => {
                 if (err){
                     console.error(err);
                 }else {
-                    console.log(url);
+                    //console.log(url);
                     setQrData(url);
                 }
             });
