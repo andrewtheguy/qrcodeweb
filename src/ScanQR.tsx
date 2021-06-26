@@ -42,7 +42,16 @@ const ScanQR: React.FC = () => {
     }
 
 
+    const copyData = (data: string) => {
+        navigator.clipboard.writeText(data).then(function() {
+            /* clipboard successfully set */
+            alert("copied successfully");
+        }, function() {
+            /* clipboard write failed */
+            alert("failed to copy to clipboard");
+        });
 
+    }
 
 
     return (
@@ -58,7 +67,7 @@ const ScanQR: React.FC = () => {
                         style={{ width: '100%', maxWidth: 600, padding: 10 }}
                     />}
                     {data ? <div id="qr-reader-results"><h1>data:</h1><DataSection data={data}></DataSection>
-                        <p><button onClick={()=>setData(null)}>Scan Again</button></p>
+                        <p><button className="btn btn-success" onClick={()=>copyData(data)}>Copy</button>&nbsp;&nbsp;<button className="btn btn-primary" onClick={()=>setData(null)}>Scan Again</button></p>
                     </div> : <div style={{backgroundColor: 'yellow'}}>Nothing yet</div>}
                     {/* JSON.stringify({data,scanTimedOut}) */}
                 </div>
