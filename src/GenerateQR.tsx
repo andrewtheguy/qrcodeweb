@@ -1,10 +1,7 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
 import {Col, Form, FormControl, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import Canvg, {
-    presets, RenderingContext2D
-} from 'canvg';
+import { QR_TEXT_STORAGE_KEY } from './Constants';
 
 const QRCode = require("qrcode");
 
@@ -15,9 +12,21 @@ function download(dataurl: string, filename: string) {
     a.click();
 }
 
+function getSessionStorageOrDefault(key: string, defaultValue: any) {
+    const stored = sessionStorage.getItem(key);
+    if (!stored) {
+        return defaultValue;
+    }
+    return stored;
+}
+
+function getQrTextFromStorage(): string{
+    return getSessionStorageOrDefault(QR_TEXT_STORAGE_KEY,'');
+}
+
 const GenerateQR: React.FC = () => {
     const [qrData,setQrData] = useState<string | null>(null);
-    const [text,setText] = useState<string>('');
+    const [text,setText] = useState<string>(getQrTextFromStorage());
 
     const HandleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const text=e.target.value;
@@ -94,6 +103,9 @@ const GenerateQR: React.FC = () => {
             });
         } else{
                  setQrData(null);
+        }
+        return function cleanup(){
+            sessionStorage.removeItem(QR_TEXT_STORAGE_KEY);
         }
     }, [text]);
 

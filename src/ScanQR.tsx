@@ -3,11 +3,13 @@ import { useState,useEffect } from 'react';
 import {Col, Form, FormControl, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import QrReader from 'modern-react-qr-reader';
 import DataSection from './DataSection';
+import { useHistory } from "react-router-dom";
+import {QR_TEXT_STORAGE_KEY} from "./Constants";
 
 const ScanQR: React.FC = () => {
     const [data,setData] = useState<string | null>(null);
     const [scanTimedOut,setScanTimedOut] = useState(false);
-
+    const history = useHistory();
 
     useEffect(() => {
             if(data === null && !scanTimedOut) {
@@ -50,7 +52,13 @@ const ScanQR: React.FC = () => {
             /* clipboard write failed */
             alert("failed to copy to clipboard");
         });
+    }
 
+    const generate = () => {
+        if(data && data.length > 0){
+            sessionStorage.setItem(QR_TEXT_STORAGE_KEY, data);
+            history.push("/");
+        }
     }
 
 
@@ -67,7 +75,9 @@ const ScanQR: React.FC = () => {
                         style={{ width: '100%', maxWidth: 600, padding: 10 }}
                     />}
                     {data ? <div id="qr-reader-results"><h1>data:</h1><DataSection data={data}></DataSection>
-                        <p><button className="btn btn-success" onClick={()=>copyData(data)}>Copy</button>&nbsp;&nbsp;<button className="btn btn-primary" onClick={()=>setData(null)}>Scan Again</button></p>
+                        <p><button className="btn btn-success" onClick={()=>copyData(data)}>Copy</button>
+                            &nbsp;&nbsp;<button className="btn btn-primary" onClick={()=>setData(null)}>Scan Again</button>
+                            &nbsp;&nbsp;<button className="btn btn-info" onClick={()=>generate()}>Generate from Data</button></p>
                     </div> : <div style={{backgroundColor: 'yellow'}}>Nothing yet</div>}
                     {/* JSON.stringify({data,scanTimedOut}) */}
                 </div>
