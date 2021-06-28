@@ -75,9 +75,9 @@ const ScanQR: React.FC = () => {
                         style={{ width: '100%', maxWidth: 600, padding: 10 }}
                     />}
                     {data ? <div id="qr-reader-results"><h1>data:</h1><DataSection data={data}></DataSection>
-                        <p><button className="btn btn-success" onClick={()=>copyData(data)}>Copy</button>
-                            &nbsp;&nbsp;<button className="btn btn-primary" onClick={()=>setData(null)}>Scan Again</button>
-                            &nbsp;&nbsp;<button className="btn btn-info" onClick={()=>generate()}>Generate from Data</button></p>
+                        <p><button className="btn btn-primary m-1" onClick={()=>setData(null)}>Scan Again</button>
+                            <button className="btn btn-success m-1" onClick={()=>copyData(data)}>Copy</button>
+                            <button className="btn btn-info m-1" onClick={()=>generate()}>Generate from Result</button></p>
                     </div> : <div style={{backgroundColor: 'yellow'}}>Nothing yet</div>}
                     {/* JSON.stringify({data,scanTimedOut}) */}
                 </div>
