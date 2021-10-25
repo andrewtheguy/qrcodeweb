@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.8",
     "bootstrap": "4.6.0",
     "canvg": "^3.0.7",
+    "dexie": "^3.0.3",
     "modern-react-qr-reader": "^1.0.12",
     "qr-scanner": "^1.2.0",
     "qrcode": "^1.4.4",

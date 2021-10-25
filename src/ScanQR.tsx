@@ -1,15 +1,61 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { useState,useEffect } from 'react';
 import {Col, Form, FormControl, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import QrReader from 'modern-react-qr-reader';
 import DataSection from './DataSection';
 import { useHistory } from "react-router-dom";
 import {QR_TEXT_STORAGE_KEY} from "./Constants";
+import Dexie from "dexie";
 
 const ScanQR: React.FC = () => {
     const [data,setData] = useState<string | null>(null);
+    const [db,setDb] = useState<Dexie | null>(null);
     const [scanTimedOut,setScanTimedOut] = useState(false);
+    const [qrHistory,setQrHistory] = useState([]);
     const history = useHistory();
+
+    useEffect(() => {
+        const db = new Dexie('qr_history');
+        // Declare tables, IDs and indexes
+        db.version(1).stores({
+            qr_histories: '++id, ts, data'
+        });
+        async function loadHistory() {
+            // @ts-ignore
+            const h = await db.qr_histories
+                .toArray();
+            setQrHistory(h);
+        }
+        loadHistory();
+        setDb(db);
+        return function cleanup() {
+            if(db) {
+                db.close();
+            }
+        }
+    }, []);
+
+
+
+    useEffect(() => {
+
+//         async function dbTest() {
+// // Find some old friends
+//             // @ts-ignore
+//             const oldFriends = await db.friends
+//                 .where('age').above(10)
+//                 .toArray();
+//
+//             console.log(oldFriends)
+//             // or make a new one
+//             // @ts-ignore
+//             await db.friends.add({
+//                 name: 'Camilla',
+//                 age: 25,
+//             });
+//         }
+//         dbTest();
+    },[]);
 
     useEffect(() => {
             if(data === null && !scanTimedOut) {
@@ -35,6 +81,17 @@ const ScanQR: React.FC = () => {
     const handleScan = (data: string | null) => {
         if (data) {
             console.log(data);
+            const addEntry = async (d: string) => {
+                const h = {
+                    ts: Math.floor(new Date().getTime()/1000),
+                    data: d,
+                };
+                // @ts-ignore
+                await db.qr_histories.add(h);
+                // @ts-ignore
+                setQrHistory([...qrHistory,h]);
+            }
+            addEntry(data);
             setData(data);
         }
     }
