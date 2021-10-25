@@ -15,6 +15,7 @@ const ScanQR: React.FC = () => {
     const history = useHistory();
 
     useEffect(() => {
+        console.log('init db')
         const db = new Dexie('qr_history');
         // Declare tables, IDs and indexes
         db.version(1).stores({
@@ -29,6 +30,7 @@ const ScanQR: React.FC = () => {
         loadHistory();
         setDb(db);
         return function cleanup() {
+            console.log('clean up')
             if(db) {
                 db.close();
             }
