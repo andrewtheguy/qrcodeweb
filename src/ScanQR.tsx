@@ -83,7 +83,7 @@ const ScanQR: React.FC = () => {
             console.log(data);
             const addEntry = async (d: string) => {
                 const h = {
-                    ts: Math.floor(new Date().getTime()/1000),
+                    ts: Math.floor(new Date().getTime()),
                     data: d,
                 };
                 // @ts-ignore
