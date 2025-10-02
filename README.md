@@ -1,3 +1,5 @@
+Archived, superseded by https://github.com/andrewtheguy/qrcodesecureshare
+
 # qrcodeweb
 
 Progressive webapp with Create React App which allows you to generate, scan and recognize QR code from pictures. 
